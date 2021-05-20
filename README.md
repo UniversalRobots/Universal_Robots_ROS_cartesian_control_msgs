@@ -13,6 +13,13 @@ Please have a look at the [design document][1] for further details on decisions 
 
 
 [1]: https://github.com/fzi-forschungszentrum-informatik/fzi_robot_interface_proposal
+
+## Acknowledgement
+Developed in collaboration between:
+
+[<img height="60" alt="Universal Robots A/S" src="doc/resources/ur_logo.jpg">](https://www.universal-robots.com/) &nbsp; and &nbsp;
+[<img height="60" alt="FZI Research Center for Information Technology" src="doc/resources/fzi_logo.png">](https://www.fzi.de).
+
 ***
 <!-- 
     ROSIN acknowledgement from the ROSIN press kit
