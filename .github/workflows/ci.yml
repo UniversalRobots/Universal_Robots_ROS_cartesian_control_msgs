@@ -1,21 +1,28 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - ros2-main
+  push:
+    branches:
+      - ros2-main
 
 jobs:
   industrial_ci:
     strategy:
       matrix:
-        ros_distro: [ melodic, noetic ]
+        ros_distro: [humble, iron, rolling]
         ros_repo: [ main, testing ]
       fail-fast: false
     env:
       CCACHE_DIR: "${{ github.workspace }}/.ccache"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: ccache cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ${{ env.CCACHE_DIR }}
           # we always want the ccache cache to be persisted, as we cannot easily
