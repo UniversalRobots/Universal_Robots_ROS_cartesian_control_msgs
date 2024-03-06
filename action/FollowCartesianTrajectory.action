@@ -1,7 +1,7 @@
 CartesianTrajectory trajectory
 CartesianTolerance path_tolerance
 CartesianTolerance goal_tolerance
-duration goal_time_tolerance
+builtin_interfaces/Duration goal_time_tolerance
 
 ---
 
@@ -18,7 +18,7 @@ string error_string
 
 ---
 
-Header header
+std_msgs/Header header
 string tcp_frame
 CartesianTrajectoryPoint desired
 CartesianTrajectoryPoint actual

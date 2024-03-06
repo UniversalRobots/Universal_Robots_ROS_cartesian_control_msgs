@@ -1,64 +1,30 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.8)
 project(cartesian_control_msgs)
 
-## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+if(CMAKE_COMPILER_IS_GNUXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
 
-## Find catkin macros and libraries
-## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
-## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS
-  actionlib_msgs
-  geometry_msgs
-  message_generation
-)
+find_package(ament_cmake REQUIRED)
+find_package(action_msgs REQUIRED)
+find_package(builtin_interfaces REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
+find_package(std_msgs REQUIRED)
 
-################################################
-## Declare ROS messages, services and actions ##
-################################################
-
-add_message_files(
-  FILES
-  CartesianPosture.msg
-  CartesianTolerance.msg
-  CartesianTrajectory.msg
-  CartesianTrajectoryPoint.msg
-)
-
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
-
-add_action_files(
-  FILES
-  FollowCartesianTrajectory.action
-)
-
-## Generate added messages and services with any dependencies listed here
-generate_messages(
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "action/FollowCartesianTrajectory.action"
+  "msg/CartesianPosture.msg"
+  "msg/CartesianTolerance.msg"
+  "msg/CartesianTrajectory.msg"
+  "msg/CartesianTrajectoryPoint.msg"
   DEPENDENCIES
-    actionlib_msgs
+    action_msgs
+    builtin_interfaces
     geometry_msgs
+    std_msgs
 )
 
+ament_export_dependencies(rosidl_default_runtime)
 
-###################################
-## catkin specific configuration ##
-###################################
-## The catkin_package macro generates cmake config files for your package
-## Declare things to be passed to dependent projects
-## INCLUDE_DIRS: uncomment this if your package contains header files
-## LIBRARIES: libraries you create in this project that dependent projects also need
-## CATKIN_DEPENDS: catkin_packages dependent projects also need
-## DEPENDS: system dependencies of this project that dependent projects also need
-catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES cartesian_control_msgs
-  CATKIN_DEPENDS
-    actionlib_msgs
-    geometry_msgs
-    message_runtime
-#  DEPENDS system_lib
-)
+ament_package()
