@@ -19,7 +19,7 @@ string error_string
 ---
 
 Header header
-string tcp_frame
+string controlled_frame
 CartesianTrajectoryPoint desired
 CartesianTrajectoryPoint actual
 CartesianTrajectoryPoint error
